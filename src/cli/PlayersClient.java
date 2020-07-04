@@ -6,9 +6,9 @@ public class PlayersClient extends CoreClient {
 
 	private static Scanner sc = new Scanner(System.in);
 	
-	private static clients.wsimports.na.PlayerServiceImplementation serviceNA; 
-	private static clients.wsimports.eu.PlayerServiceImplementation serviceEU;
-	private static clients.wsimports.as.PlayerServiceImplementation serviceAS;
+	private static clients.wsimports.na.PlayerServiceNAImplementation serviceNA; 
+	private static clients.wsimports.eu.PlayerServiceEUImplementation serviceEU;
+	private static clients.wsimports.as.PlayerServiceASImplementation serviceAS;
 	
 	
 	public static void main(String[] args) {
@@ -129,17 +129,17 @@ public class PlayersClient extends CoreClient {
 	}
 	
 	private static void setRegionServices() {
-		clients.wsimports.na.PlayerServiceImplementationService implNA;
-		implNA = new clients.wsimports.na.PlayerServiceImplementationService();
-		serviceNA = implNA.getPlayerServiceImplementationPort();
+		clients.wsimports.na.PlayerServiceNAImplementationService implNA;
+		implNA = new clients.wsimports.na.PlayerServiceNAImplementationService();
+		serviceNA = implNA.getPlayerServiceNAImplementationPort();
 
-		clients.wsimports.eu.PlayerServiceImplementationService implEU;
-		implEU = new clients.wsimports.eu.PlayerServiceImplementationService();
-		serviceEU = implEU.getPlayerServiceImplementationPort();
+		clients.wsimports.eu.PlayerServiceEUImplementationService implEU;
+		implEU = new clients.wsimports.eu.PlayerServiceEUImplementationService();
+		serviceEU = implEU.getPlayerServiceEUImplementationPort();
 
-		clients.wsimports.as.PlayerServiceImplementationService implAS;
-		implAS = new clients.wsimports.as.PlayerServiceImplementationService();
-		serviceAS = implAS.getPlayerServiceImplementationPort();
+		clients.wsimports.as.PlayerServiceASImplementationService implAS;
+		implAS = new clients.wsimports.as.PlayerServiceASImplementationService();
+		serviceAS = implAS.getPlayerServiceASImplementationPort();
 	}
 	
 	private static void realizePlayerTransferAccount(String uName, String password, String oldIpAddress,
@@ -150,12 +150,15 @@ public class PlayersClient extends CoreClient {
 		switch(regionString) {
 			case "GameServerNA": {
 				retStatement = serviceNA.transferAccount(uName, password, oldIpAddress, newIpAddress);
+				break;
 			}
 			case "GameServerEU": {
 				retStatement = serviceEU.transferAccount(uName, password, oldIpAddress, newIpAddress);
+				break;
 			}
 			case "GameServerAS": {
 				retStatement = serviceAS.transferAccount(uName, password, oldIpAddress, newIpAddress);
+				break;
 			}
 		}
 		
@@ -171,12 +174,15 @@ public class PlayersClient extends CoreClient {
 		switch(regionString) {
 			case "GameServerNA": {
 				retStatement = serviceNA.createPlayerAccount(fName, lName, uName, password, ipAddress, age);
+				break;
 			}
 			case "GameServerEU": {
 				retStatement = serviceEU.createPlayerAccount(fName, lName, uName, password, ipAddress, age);
+				break;
 			}
 			case "GameServerAS": {
 				retStatement = serviceAS.createPlayerAccount(fName, lName, uName, password, ipAddress, age);
+				break;
 			}
 		}
 		
@@ -191,12 +197,15 @@ public class PlayersClient extends CoreClient {
 		switch(regionString) {
 			case "GameServerNA": {
 				retStatement = serviceNA.playerSignIn(uName, password, ipAddress);
+				break;
 			}
 			case "GameServerEU": {
 				retStatement = serviceEU.playerSignIn(uName, password, ipAddress);
+				break;
 			}
 			case "GameServerAS": {
 				retStatement = serviceAS.playerSignIn(uName, password, ipAddress);
+				break;
 			}
 		}
 		
@@ -211,12 +220,15 @@ public class PlayersClient extends CoreClient {
 		switch(regionString) {
 			case "GameServerNA": {
 				retStatement = serviceNA.playerSignOut(uName, ipAddress);
+				break;
 			}
 			case "GameServerEU": {
 				retStatement = serviceEU.playerSignOut(uName, ipAddress);
+				break;
 			}
 			case "GameServerAS": {
 				retStatement = serviceAS.playerSignOut(uName, ipAddress);
+				break;
 			}
 		}
 		

@@ -6,9 +6,9 @@ public class AdministratorsClient extends CoreClient {
 	
 	private static Scanner sc = new Scanner(System.in);
 	
-	private static clients.wsimports.na.PlayerServiceImplementation serviceNA; 
-	private static clients.wsimports.eu.PlayerServiceImplementation serviceEU;
-	private static clients.wsimports.as.PlayerServiceImplementation serviceAS;
+	private static clients.wsimports.na.PlayerServiceNAImplementation serviceNA; 
+	private static clients.wsimports.eu.PlayerServiceEUImplementation serviceEU;
+	private static clients.wsimports.as.PlayerServiceASImplementation serviceAS;
 
 	public static void main(String[] args) {
 		setRegionServices();
@@ -118,12 +118,15 @@ public class AdministratorsClient extends CoreClient {
 		switch(regionString) {
 			case "GameServerNA": {
 				retStatement = serviceNA.adminSignIn(uName, password, ipAddress);
+				break;
 			}
 			case "GameServerEU": {
 				retStatement = serviceEU.adminSignIn(uName, password, ipAddress);
+				break;
 			}
 			case "GameServerAS": {
 				retStatement = serviceAS.adminSignIn(uName, password, ipAddress);
+				break;
 			}
 		}
 		
@@ -138,12 +141,15 @@ public class AdministratorsClient extends CoreClient {
 		switch(regionString) {
 			case "GameServerNA": {
 				retStatement = serviceNA.adminSignOut(uName, ipAddress);
+				break;
 			}
 			case "GameServerEU": {
 				retStatement = serviceEU.adminSignOut(uName, ipAddress);
+				break;
 			}
 			case "GameServerAS": {
 				retStatement = serviceAS.adminSignOut(uName, ipAddress);
+				break;
 			}
 		}
 		
@@ -158,12 +164,15 @@ public class AdministratorsClient extends CoreClient {
 		switch(regionString) {
 			case "GameServerNA": {
 				retStatement = serviceNA.getPlayerStatus(uName, password, ipAddress);
+				break;
 			}
 			case "GameServerEU": {
 				retStatement = serviceEU.getPlayerStatus(uName, password, ipAddress);
+				break;
 			}
 			case "GameServerAS": {
 				retStatement = serviceAS.getPlayerStatus(uName, password, ipAddress);
+				break;
 			}
 		}
 	
@@ -179,12 +188,15 @@ public class AdministratorsClient extends CoreClient {
 		switch(regionString) {
 			case "GameServerNA": {
 				retStatement = serviceNA.suspendAccount(uName, password, ipAddress, uNameToSuspend);
+				break;
 			}
 			case "GameServerEU": {
 				retStatement = serviceEU.suspendAccount(uName, password, ipAddress, uNameToSuspend);
+				break;
 			}
 			case "GameServerAS": {
 				retStatement = serviceAS.suspendAccount(uName, password, ipAddress, uNameToSuspend);
+				break;
 			}
 		}
 		
@@ -193,17 +205,17 @@ public class AdministratorsClient extends CoreClient {
 	}
 	
 	private static void setRegionServices() {
-		clients.wsimports.na.PlayerServiceImplementationService implNA;
-		implNA = new clients.wsimports.na.PlayerServiceImplementationService();
-		serviceNA = implNA.getPlayerServiceImplementationPort();
+		clients.wsimports.na.PlayerServiceNAImplementationService implNA;
+		implNA = new clients.wsimports.na.PlayerServiceNAImplementationService();
+		serviceNA = implNA.getPlayerServiceNAImplementationPort();
 
-		clients.wsimports.eu.PlayerServiceImplementationService implEU;
-		implEU = new clients.wsimports.eu.PlayerServiceImplementationService();
-		serviceEU = implEU.getPlayerServiceImplementationPort();
+		clients.wsimports.eu.PlayerServiceEUImplementationService implEU;
+		implEU = new clients.wsimports.eu.PlayerServiceEUImplementationService();
+		serviceEU = implEU.getPlayerServiceEUImplementationPort();
 
-		clients.wsimports.as.PlayerServiceImplementationService implAS;
-		implAS = new clients.wsimports.as.PlayerServiceImplementationService();
-		serviceAS = implAS.getPlayerServiceImplementationPort();
+		clients.wsimports.as.PlayerServiceASImplementationService implAS;
+		implAS = new clients.wsimports.as.PlayerServiceASImplementationService();
+		serviceAS = implAS.getPlayerServiceASImplementationPort();
 	}
 
 	private static void handleServerDown(String uName, String ipAddress, Exception e) {
