@@ -235,11 +235,5 @@ public class PlayersClient extends CoreClient {
 		System.out.println(retStatement);
 		playerLog(retStatement, uName, ipAddress);
 	}
-	
-	private static void handleServerDown(String uName, String ipAddress, Exception e) {
-		String err = "ERROR: Region server is not active";
-		System.out.println(err);
-		playerLog(err, uName, ipAddress);
-	}
 
 }

@@ -218,11 +218,4 @@ public class AdministratorsClient extends CoreClient {
 		serviceAS = implAS.getPlayerServiceASImplementationPort();
 	}
 
-	private static void handleServerDown(String uName, String ipAddress, Exception e) {
-		String err = "ERROR: Region server is not active";
-		System.out.println(err);
-		adminLog(err, uName, ipAddress);
-	}
-	
-
 }
